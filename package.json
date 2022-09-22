@@ -3,5 +3,24 @@
     "@proxtx/config": "^1.0.2",
     "@proxtx/framework": "^1.5.3",
     "@proxtx/material": "^1.1.4"
-  }
+  },
+  "name": "u_web_gui_app_interaction",
+  "description": "interacts with the u api to provide a simple web gui for app exports",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Proxtx/u_web_gui_app_interaction.git"
+  },
+  "author": "Proxtx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Proxtx/u_web_gui_app_interaction/issues"
+  },
+  "homepage": "https://github.com/Proxtx/u_web_gui_app_interaction#readme"
 }
