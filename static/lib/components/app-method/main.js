@@ -6,7 +6,9 @@ export class Component {
     this.api = window.api;
     this.wrap = this.document.getElementById("argumentWrap");
     this.name = this.document.getElementById("name");
-    this.document.getElementById("execute").addEventListener("click", () => {
+    this.executeButton = this.document.getElementById("execute");
+    this.response = this.document.getElementById("response");
+    this.executeButton.addEventListener("click", () => {
       this.execute();
     });
   }
@@ -45,7 +47,17 @@ export class Component {
       args.push(argElem.component.input.component.getValue());
     }
 
-    await this.api.execute(cookie.pwd, this.appIndex, this.method, args);
-    console.log("yes");
+    this.executeButton.innerText = "...";
+    let response = await this.api.execute(
+      cookie.pwd,
+      this.appIndex,
+      this.method,
+      args
+    );
+    this.executeButton.innerText = "Execute";
+    if (response == undefined) return;
+    this.response.innerText = response;
+    await new Promise((r) => setTimeout(r, 5000));
+    this.response.innerText = "";
   }
 }
