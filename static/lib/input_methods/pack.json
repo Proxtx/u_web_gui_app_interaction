@@ -1,3 +1,10 @@
 {
-  "components": {}
+  "components": {
+    "color": {
+      "name": "i-color",
+      "template": "/input_methods/color/index.html",
+      "component": "/input_methods/color/main.js",
+      "styles": ["/main.css", "/input_methods/color/style.css"]
+    }
+  }
 }

@@ -1,6 +1,7 @@
 window.guiLoaded = [];
 
 import { loadPack } from "/modules/uibuilder/main.js";
+import * as _ from "./apiLoader.js";
 
 await loadPack("/modules/material/components/pack.json", {
   urlPrefix: "/modules/material/",
