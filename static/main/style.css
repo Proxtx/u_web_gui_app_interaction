@@ -2,4 +2,5 @@
   display: flex;
   padding: var(--contentSpacing);
   flex-direction: column;
+  gap: var(--contentSpacing);
 }

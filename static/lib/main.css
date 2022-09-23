@@ -5,6 +5,7 @@
   --fontFamily: "Roboto", "Helvetica", "Arial", sans-serif;
   --borderRadius: 3px;
   --dialogueColor: #bbd1ea;
+  --backgroundColor: #dae3e5;
   box-sizing: border-box;
 }
 
@@ -21,4 +22,5 @@ b {
 
 body {
   margin: 0;
+  background-color: var(--backgroundColor);
 }

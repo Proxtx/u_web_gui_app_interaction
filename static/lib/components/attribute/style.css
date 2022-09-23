@@ -1,0 +1,10 @@
+#wrap {
+  background-color: var(--backgroundColor);
+  padding: var(--contentSpacing);
+  border-radius: var(--borderRadius);
+  box-shadow: 0px 0px 3px 0px #00000040;
+}
+
+#name {
+  margin-bottom: var(--contentSpacing);
+}

@@ -8,9 +8,11 @@ export class Component {
   }
 
   async inputDefinition(definition) {
-    let input = this.document.createElement(typeToComponent[definition.type]);
+    console.log(definition);
+    let input = document.createElement(typeToComponent[definition.type]);
+    this.document.getElementById("wrap").appendChild(input);
+    this.document.getElementById("name").innerText = definition.name;
     await uiBuilder.ready(input);
     input.component.setConfig(definition);
-    //this.document
   }
 }
