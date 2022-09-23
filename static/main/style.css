@@ -1,0 +1,5 @@
+#wrap {
+  display: flex;
+  padding: var(--contentSpacing);
+  flex-direction: column;
+}

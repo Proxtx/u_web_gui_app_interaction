@@ -1,0 +1,9 @@
+#bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--contentSpacing) * 3.75);
+  background-color: var(--accentColor);
+  padding: calc(var(--contentSpacing) * 2);
+  box-shadow: 0px 4px 4px 0px #00000040;
+}

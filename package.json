@@ -9,7 +9,6 @@
   "version": "1.0.0",
   "main": "main.js",
   "type": "module",
-  "devDependencies": {},
   "scripts": {
     "test": "nodemon ."
   },
