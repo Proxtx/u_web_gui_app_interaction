@@ -18,11 +18,11 @@
       "component": "/components/app-method/main.js",
       "styles": ["/main.css", "/components/app-method/style.css"]
     },
-    "attribute": {
-      "name": "u-attribute",
-      "template": "/components/attribute/index.html",
-      "component": "/components/attribute/main.js",
-      "styles": ["/main.css", "/components/attribute/style.css"]
+    "argument": {
+      "name": "u-argument",
+      "template": "/components/argument/index.html",
+      "component": "/components/argument/main.js",
+      "styles": ["/main.css", "/components/argument/style.css"]
     }
   }
 }

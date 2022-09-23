@@ -5,6 +5,12 @@
       "template": "/input_methods/color/index.html",
       "component": "/input_methods/color/main.js",
       "styles": ["/main.css", "/input_methods/color/style.css"]
+    },
+    "number": {
+      "name": "i-number",
+      "template": "/input_methods/number/index.html",
+      "component": "/input_methods/number/main.js",
+      "styles": ["/main.css", "/input_methods/number/style.css"]
     }
   }
 }
