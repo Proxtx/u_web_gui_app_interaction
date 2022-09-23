@@ -15,4 +15,6 @@ export class Component {
   getValue() {
     return this.document.getElementById("input").value;
   }
+
+  setConfig(config) {}
 }
