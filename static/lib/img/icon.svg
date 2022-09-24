@@ -9,6 +9,9 @@
    id="svg5"
    inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
    sodipodi:docname="icon.svg"
+   inkscape:export-filename="icon.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +29,7 @@
      showgrid="false"
      inkscape:zoom="0.73851712"
      inkscape:cx="-832.74983"
-     inkscape:cy="725.77871"
+     inkscape:cy="412.98975"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="1912"
@@ -46,7 +49,10 @@
        height="85.708115"
        x="-176.12787"
        y="119.28225"
-       ry="3.2140543" />
+       ry="3.2140543"
+       inkscape:export-filename="icon.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <g
        id="g4164"
        transform="translate(3.8146973e-6,2.3736982)">
