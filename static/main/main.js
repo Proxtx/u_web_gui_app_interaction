@@ -1,7 +1,5 @@
 import { api } from "../lib/apiLoader.js";
 
-if (!cookie.pwd) cookie.pwd = prompt("Pwd");
-
 const wrap = document.getElementById("wrap");
 const drawer = document.getElementById("drawer");
 const overlay = document.getElementById("overlay");

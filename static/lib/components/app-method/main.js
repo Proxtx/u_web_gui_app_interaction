@@ -32,6 +32,12 @@ export class Component {
     let method = definitions.methods[this.method];
     this.name.innerText = method.name;
 
+    if (method.autoRun) {
+      this.execute(false);
+      this.executeButton.style.display = "none";
+      return;
+    }
+
     for (let definition of method.arguments) {
       let argument = document.createElement("u-argument");
       this.wrap.appendChild(argument);
@@ -41,7 +47,7 @@ export class Component {
     }
   }
 
-  async execute() {
+  async execute(hide = true) {
     let args = [];
     for (let argElem of this.argumentElements) {
       args.push(argElem.component.input.component.getValue());
@@ -57,6 +63,7 @@ export class Component {
     this.executeButton.innerText = "Execute";
     if (response == undefined) return;
     this.response.innerText = response;
+    if (!hide) return;
     await new Promise((r) => setTimeout(r, 5000));
     this.response.innerText = "";
   }
