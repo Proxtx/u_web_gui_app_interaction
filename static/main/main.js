@@ -1,5 +1,6 @@
 import { api } from "../lib/apiLoader.js";
 
+const appBar = document.getElementById("appBar");
 const wrap = document.getElementById("wrap");
 const drawer = document.getElementById("drawer");
 const overlay = document.getElementById("overlay");
@@ -8,7 +9,7 @@ overlay.addEventListener("click", () => {
   closeDrawer();
 });
 
-const loadApp = async (appIndex) => {
+const loadApp = async (appIndex, name) => {
   wrap.innerHTML = "";
   let definition = await api.getDefinitions(cookie.pwd, appIndex);
   for (let method in definition.methods) {
@@ -18,6 +19,8 @@ const loadApp = async (appIndex) => {
     methodElem.setAttribute("appIndex", appIndex);
     methodElem.setAttribute("method", method);
   }
+
+  appBar.setAttribute("title", "Unify - " + name);
 };
 
 const openDrawer = () => {
@@ -33,14 +36,15 @@ const closeDrawer = () => {
 const fillDrawer = async () => {
   let apps = await api.getApps(cookie.pwd);
   for (let appIndex in apps) {
+    let name = apps[appIndex].name;
     let button = document.createElement("m-button");
     button.className = "drawerOption";
     button.setAttribute("stretch", true);
     button.setAttribute("type", "text");
-    button.innerText = apps[appIndex].name;
+    button.innerText = name;
     drawer.appendChild(button);
     button.addEventListener("click", async () => {
-      loadApp(appIndex);
+      loadApp(appIndex, name);
       await new Promise((r) => setTimeout(r, 100));
       closeDrawer();
     });
@@ -49,5 +53,7 @@ const fillDrawer = async () => {
 
 window.openDrawer = openDrawer;
 
-loadApp(0);
-fillDrawer();
+await uiBuilder.ready(appBar);
+
+await fillDrawer();
+openDrawer();
