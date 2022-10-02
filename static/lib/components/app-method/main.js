@@ -28,7 +28,16 @@ export class Component {
 
   async generateArguments() {
     if (!this.appIndex || !this.method) return;
-    let definitions = await this.api.getDefinitions(cookie.pwd, this.appIndex);
+
+    if (!window.definitions) window.definitions = [];
+    if (!window.definitions?.[this.appIndex]) {
+      window.definitions[this.appIndex] = this.api.getDefinitions(
+        cookie.pwd,
+        this.appIndex
+      );
+    }
+    let definitions = await window.definitions[this.appIndex];
+
     let method = definitions.methods[this.method];
     this.name.innerText = method.name;
 
