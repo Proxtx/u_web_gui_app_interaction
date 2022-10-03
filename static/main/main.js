@@ -11,7 +11,11 @@ overlay.addEventListener("click", () => {
 
 const loadApp = async (appIndex, name) => {
   wrap.innerHTML = "";
-  let definition = await api.getDefinitions(cookie.pwd, appIndex);
+  if (!window.definitions) window.definitions = [];
+  if (!window.definitions?.[appIndex]) {
+    window.definitions[appIndex] = api.getDefinitions(cookie.pwd, appIndex);
+  }
+  let definition = await window.definitions[appIndex];
   for (let method in definition.methods) {
     let methodElem = document.createElement("u-app-method");
     wrap.appendChild(methodElem);
