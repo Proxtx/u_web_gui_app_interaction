@@ -11,6 +11,12 @@
       "template": "/input_methods/number/index.html",
       "component": "/input_methods/number/main.js",
       "styles": ["/main.css", "/input_methods/number/style.css"]
+    },
+    "text": {
+      "name": "i-text",
+      "template": "/input_methods/text/index.html",
+      "component": "/input_methods/text/main.js",
+      "styles": ["/main.css", "/input_methods/text/style.css"]
     }
   }
 }

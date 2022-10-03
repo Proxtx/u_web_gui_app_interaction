@@ -1,6 +1,7 @@
 const typeToComponent = {
   color: "i-color",
   number: "i-number",
+  text: "i-text",
 };
 
 export class Component {
