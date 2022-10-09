@@ -17,6 +17,7 @@
   flex-direction: column;
   transform: translateX(-100%);
   transition: 0.3s;
+  max-width: 300px;
 }
 
 #overlay {
