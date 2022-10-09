@@ -1,11 +1,11 @@
 * {
-  --accentColor: #507dbc;
+  --accentColor: #6096ba;
   --headingColor: #ffffff;
   --contentSpacing: 8px;
   --fontFamily: "Roboto", "Helvetica", "Arial", sans-serif;
   --borderRadius: 3px;
-  --dialogueColor: #bbd1ea;
-  --backgroundColor: #dae3e5;
+  --dialogueColor: #f5f5f5;
+  --backgroundColor: #ffffff;
   box-sizing: border-box;
 }
 
