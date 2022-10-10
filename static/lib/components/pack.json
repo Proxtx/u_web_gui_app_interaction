@@ -23,6 +23,12 @@
       "template": "/components/argument/index.html",
       "component": "/components/argument/main.js",
       "styles": ["/main.css", "/components/argument/style.css"]
+    },
+    "flow-action": {
+      "name": "u-flow-action",
+      "template": "/components/flow-action/index.html",
+      "component": "/components/flow-action/main.js",
+      "styles": ["/main.css", "/components/flow-action/style.css"]
     }
   }
 }
