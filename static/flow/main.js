@@ -11,9 +11,16 @@ let currentFlowName;
 
 const renderActions = async (actions) => {
   actionWrap.innerHTML = "";
-  for (let action of actions) {
+  for (let actionIndex in actions) {
+    let action = actions[actionIndex];
     let actionElem = await generateActionElem(action);
     actionWrap.appendChild(actionElem);
+
+    let localIndex = actionIndex;
+    actionElem.addEventListener("click", () => {
+      activeIndex = localIndex;
+      renderActive();
+    });
     actionElem.component.changeCallback = () => {
       updateCorners();
     };
