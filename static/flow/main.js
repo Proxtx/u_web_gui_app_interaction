@@ -16,11 +16,6 @@ const renderActions = async (actions) => {
     let actionElem = await generateActionElem(action);
     actionWrap.appendChild(actionElem);
 
-    let localIndex = actionIndex;
-    actionElem.addEventListener("click", () => {
-      activeIndex = localIndex;
-      renderActive();
-    });
     actionElem.component.changeCallback = () => {
       updateCorners();
     };
@@ -64,6 +59,14 @@ const generateActionElem = async (actionConfig) => {
   const actionElem = document.createElement("u-flow-action");
   await uiBuilder.ready(actionElem);
   await actionElem.component.importAction(actionConfig);
+  actionElem.addEventListener("click", () => {
+    for (let i = 0; i < actionElem.parentElement.children.length; i++) {
+      if (actionElem.parentElement.children[i] == actionElem) {
+        activeIndex = i;
+        renderActive();
+      }
+    }
+  });
   return actionElem;
 };
 
@@ -91,6 +94,12 @@ window.addAction = async () => {
 
   activeIndex++;
   renderActive();
+
+  let localIndex = activeIndex;
+  actionElem.addEventListener("click", () => {
+    activeIndex = localIndex;
+    renderActive();
+  });
 };
 
 window.upAction = () => {
