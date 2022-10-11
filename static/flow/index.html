@@ -9,34 +9,38 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <u-app-bar title="Unify - Flow"></u-app-bar>
+    <div id="overlay"></div>
+    <div id="drawer"></div>
+    <u-app-bar title="Unify" id="appBar"></u-app-bar>
     <div id="content">
       <div id="sideBar"></div>
-      <div id="actionWrap">
-        <u-flow-action></u-flow-action>
-        <u-flow-action></u-flow-action>
-
-        <u-flow-action></u-flow-action>
-
-        <u-flow-action></u-flow-action>
-
-        <u-flow-action></u-flow-action>
-
-        <u-flow-action></u-flow-action>
-
-        <u-flow-action></u-flow-action>
-
-        <u-flow-action></u-flow-action>
-
-        <u-flow-action></u-flow-action>
-
-        <u-flow-action></u-flow-action>
-        <u-flow-action></u-flow-action>
-
-        <u-flow-action></u-flow-action>
+      <div id="actionWrap"></div>
+    </div>
+    <div id="floatingActionBar">
+      <div class="floatingActionBarActionsWrap">
+        <m-button onclick="window.deleteAction()" type="outlined"
+          >delete</m-button
+        >
+        <m-button onclick="window.saveAction()" type="outlined">save</m-button>
+        <m-button onclick="window.runAction()" id="runButton">run</m-button>
+      </div>
+      <div class="floatingActionBarActionsWrap">
+        <img
+          id="remove"
+          src="../lib/img/plus.svg"
+          onclick="window.removeAction()"
+        />
+        <img
+          id="down"
+          src="../lib/img/arrow.svg"
+          onclick="window.downAction()"
+        />
+        <img id="up" src="../lib/img/arrow.svg" onclick="window.upAction()" />
+        <img id="add" src="../lib/img/plus.svg" onclick="window.addAction()" />
       </div>
     </div>
 
+    <script src="../lib/drawer.js" type="module"></script>
     <script src="../lib/guiLoader.js" type="module"></script>
     <script src="main.js" type="module"></script>
   </body>

@@ -1,13 +1,9 @@
 import { api } from "../lib/apiLoader.js";
+import { closeDrawer } from "../lib/drawer.js";
 
 const appBar = document.getElementById("appBar");
 const wrap = document.getElementById("wrap");
 const drawer = document.getElementById("drawer");
-const overlay = document.getElementById("overlay");
-
-overlay.addEventListener("click", () => {
-  closeDrawer();
-});
 
 const loadApp = async (appIndex, name) => {
   wrap.innerHTML = "";
@@ -21,16 +17,6 @@ const loadApp = async (appIndex, name) => {
   }
 
   appBar.setAttribute("title", "Unify - " + name);
-};
-
-const openDrawer = () => {
-  drawer.style.transform = "translateX(0)";
-  overlay.style.display = "unset";
-};
-
-const closeDrawer = () => {
-  drawer.style.transform = "translateX(-100%)";
-  overlay.style.display = "none";
 };
 
 const fillDrawer = async () => {
@@ -51,9 +37,6 @@ const fillDrawer = async () => {
   }
 };
 
-window.openDrawer = openDrawer;
-
 await uiBuilder.ready(appBar);
 
 await fillDrawer();
-openDrawer();

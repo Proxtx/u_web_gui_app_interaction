@@ -15,4 +15,9 @@ export class Component {
   getValue() {
     return this.input.component.value;
   }
+
+  async setValue(value) {
+    await uiBuilder.ready(this.input);
+    this.input.component.value = value;
+  }
 }

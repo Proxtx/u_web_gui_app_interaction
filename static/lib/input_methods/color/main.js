@@ -16,5 +16,10 @@ export class Component {
     return this.document.getElementById("input").value;
   }
 
+  setValue(value) {
+    this.document.getElementById("visInput").style.backgroundColor = value;
+    this.document.getElementById("input").value = value;
+  }
+
   setConfig(config) {}
 }

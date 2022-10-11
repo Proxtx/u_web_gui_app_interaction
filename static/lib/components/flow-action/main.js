@@ -1,5 +1,8 @@
 export class Component {
-  appIndex = 0;
+  expanded = false;
+
+  loadingMethods = false;
+  loadingArguments = false;
 
   constructor(options) {
     this.document = options.shadowDom;
@@ -12,64 +15,137 @@ export class Component {
     this.content = this.document.getElementById("content");
     this.box = this.document.getElementById("box");
 
-    this.appSelect.addEventListener("change", () => {
-      this.appIndex = this.appNames.indexOf(this.appSelect.value);
-      this.applyMethods();
-    });
-
-    this.methodSelect.addEventListener("change", () => {
-      this.methodUpdate();
-    });
-
     this.arrow.addEventListener("click", () => {
       if (this.box.classList.contains("expanded")) this.hide();
       else this.show();
     });
 
-    this.setup();
+    this.appSelect.addEventListener("change", async () => {
+      await this.loadMethods();
+      await this.loadArguments();
+    });
+
+    this.methodSelect.addEventListener("change", () => {
+      this.loadArguments();
+    });
   }
 
-  setup = async () => {
+  init = async () => {
+    await this.loadApps();
+    this.appSelect.selectedIndex = -1;
+  };
+
+  hide = () => {
+    this.expanded = false;
+    this.content.style.display = "none";
+    this.arrow.classList.remove("arrowRotated");
+    this.box.classList.remove("expanded");
+    this.changeCallback && this.changeCallback();
+  };
+
+  show = () => {
+    this.expanded = true;
+    this.content.style.display = "flex";
+    this.arrow.classList.add("arrowRotated");
+    this.box.classList.add("expanded");
+    this.changeCallback && this.changeCallback();
+  };
+
+  async loadApps() {
     let apps = await window.api.getApps(cookie.pwd);
-    this.appNames = apps.map((app) => app.name);
-    this.applyOptionArray(this.appSelect, this.appNames);
-    this.applyMethods();
-  };
+    let appNames = apps.map((app) => app.name);
+    this.applyOptionArray(this.appSelect, appNames);
+  }
 
-  applyMethods = async () => {
-    this.appDefinition = await window.getDefinition(this.appIndex);
-    let methodNames = Object.values(this.appDefinition.methods).map(
-      (v) => v.name
+  async loadMethods() {
+    if (this.loadingMethods) return;
+    this.loadingMethods = true;
+
+    let appDefinition = await window.getDefinition(
+      this.appSelect.selectedIndex
     );
+    let methodNames = Object.values(appDefinition.methods).map((v) => v.name);
     this.applyOptionArray(this.methodSelect, methodNames);
-    this.methodUpdate();
-  };
 
-  showArguments = async () => {
+    this.loadingMethods = false;
+  }
+
+  async loadArguments() {
+    if (this.loadingArguments) return;
+    this.loadingArguments = true;
+
     this.arguments.innerHTML = "";
 
-    for (let argument of this.methodDefinition.arguments) {
-      let elem = document.createElement("u-argument");
-      await uiBuilder.ready(elem);
-      elem.component.inputDefinition(argument);
-      this.arguments.appendChild(elem);
-    }
-  };
+    let appDefinition = await window.getDefinition(
+      this.appSelect.selectedIndex
+    );
 
-  methodUpdate = async () => {
-    for (let method in this.appDefinition.methods) {
-      if (this.appDefinition.methods[method].name == this.methodSelect.value) {
-        this.methodDefinition = this.appDefinition.methods[method];
+    let methodDefinition;
+    for (let method in appDefinition.methods) {
+      if (appDefinition.methods[method].name == this.methodSelect.value) {
+        methodDefinition = appDefinition.methods[method];
         break;
       }
     }
-    await this.showArguments();
+
+    for (let argument of methodDefinition.arguments) {
+      let elem = document.createElement("u-argument");
+      await uiBuilder.ready(elem);
+      await elem.component.inputDefinition(argument);
+      this.arguments.appendChild(elem);
+    }
+
     this.updateTitle();
+
+    this.loadingArguments = false;
+  }
+
+  setArgumentValues = (values) => {
+    for (let valueIndex in values) {
+      this.arguments.children[valueIndex].component.input.component.setValue(
+        values[valueIndex]
+      );
+    }
   };
 
-  updateTitle = () => {
-    this.title.innerText =
-      this.appSelect.value + " - " + this.methodSelect.value;
+  getArgumentValues = () => {
+    let values = [];
+
+    for (let elem of this.arguments.children) {
+      values.push(elem.component.input.component.getValue());
+    }
+
+    return values;
+  };
+
+  importAction = async (actionDefinition) => {
+    await this.loadApps();
+    this.appSelect.selectedIndex = actionDefinition.appIndex;
+    await this.loadMethods();
+    this.methodSelect.value = (
+      await window.getDefinition(this.appSelect.selectedIndex)
+    ).methods[actionDefinition.method].name;
+    await this.loadArguments();
+    this.setArgumentValues(actionDefinition.arguments);
+  };
+
+  exportAction = async () => {
+    let method;
+    let appDefinition = await window.getDefinition(
+      this.appSelect.selectedIndex
+    );
+    for (let methodName in appDefinition.methods) {
+      if (appDefinition.methods[methodName].name == this.methodSelect.value) {
+        method = methodName;
+        break;
+      }
+    }
+
+    return {
+      appIndex: this.appSelect.selectedIndex,
+      method,
+      arguments: this.getArgumentValues(),
+    };
   };
 
   applyOptionArray = async (elem, options) => {
@@ -82,15 +158,8 @@ export class Component {
     }
   };
 
-  hide = () => {
-    this.content.style.display = "none";
-    this.arrow.classList.remove("arrowRotated");
-    this.box.classList.remove("expanded");
-  };
-
-  show = () => {
-    this.content.style.display = "flex";
-    this.arrow.classList.add("arrowRotated");
-    this.box.classList.add("expanded");
+  updateTitle = () => {
+    this.title.innerText =
+      this.appSelect.value + " - " + this.methodSelect.value;
   };
 }

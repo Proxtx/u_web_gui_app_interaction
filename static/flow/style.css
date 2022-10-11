@@ -15,3 +15,43 @@
   width: 100%;
   padding-right: var(--contentSpacing);
 }
+
+#floatingActionBar {
+  border-radius: calc(var(--borderRadius) * 5);
+  border: 2px solid var(--accentColor);
+  padding: var(--contentSpacing);
+  display: flex;
+  flex-direction: row;
+  gap: var(--contentSpacing);
+  background-color: var(--dialogueColor);
+  margin: calc(var(--contentSpacing) * 2);
+  justify-content: space-between;
+  position: relative;
+}
+
+.floatingActionBarActionsWrap {
+  display: flex;
+  flex-direction: row;
+  gap: var(--contentSpacing);
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#remove {
+  transform: rotate(45deg);
+  height: 70%;
+}
+
+#down {
+  transform: rotate(90deg);
+  height: 70%;
+}
+
+#up {
+  transform: rotate(-90deg);
+  height: 70%;
+}
+
+#add {
+  height: 70%;
+}

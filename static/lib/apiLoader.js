@@ -1,5 +1,6 @@
 export const api = await framework.load("api.js");
 export const meta = await framework.load("meta.js");
+export const flow = await framework.load("flow.js");
 
 window.api = api;
 window.meta = meta;

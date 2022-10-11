@@ -55,3 +55,7 @@
 .arrowRotated {
   transform: rotate(90deg);
 }
+
+.active {
+  border-bottom: 2px dotted var(--accentColor);
+}
