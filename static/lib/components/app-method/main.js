@@ -64,7 +64,11 @@ export class Component {
     );
     this.executeButton.innerText = "Execute";
     if (response == undefined) return;
-    this.response.innerText = response;
+    try {
+      this.response.innerText = JSON.stringify(response, null, 2);
+    } catch {
+      this.response.innerText = response;
+    }
     if (!hide) return;
     await new Promise((r) => setTimeout(r, 5000));
     this.response.innerText = "";
