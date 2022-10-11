@@ -158,6 +158,17 @@ const fillDrawer = async () => {
   newButton.addEventListener("click", () => {
     createNewFlow(prompt("Name"));
   });
+
+  let executeButton = document.createElement("m-button");
+  executeButton.className = "drawerOption";
+  executeButton.setAttribute("stretch", true);
+  executeButton.setAttribute("type", "text");
+  executeButton.innerText = "execute overview";
+  drawer.appendChild(executeButton);
+  executeButton.addEventListener("click", async () => {
+    await new Promise((r) => setTimeout(r, 100));
+    location.pathname = "../main";
+  });
 };
 
 const createNewFlow = async (name) => {

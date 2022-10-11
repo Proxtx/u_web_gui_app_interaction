@@ -35,6 +35,16 @@ const fillDrawer = async () => {
       closeDrawer();
     });
   }
+
+  let newButton = document.createElement("m-button");
+  newButton.className = "drawerOption";
+  newButton.setAttribute("stretch", true);
+  newButton.innerText = "flow editor";
+  drawer.appendChild(newButton);
+  newButton.addEventListener("click", async () => {
+    await new Promise((r) => setTimeout(r, 100));
+    location.pathname = "../flow";
+  });
 };
 
 await uiBuilder.ready(appBar);
