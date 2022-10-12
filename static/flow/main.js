@@ -1,5 +1,4 @@
-import { closeDrawer, openDrawer } from "../lib/drawer.js";
-closeDrawer();
+import { closeDrawer } from "../lib/drawer.js";
 
 import * as _ from "../lib/guiLoader.js";
 import { flow } from "../lib/apiLoader.js";
@@ -201,5 +200,4 @@ const loadFlow = async (flowName) => {
   appBar.setAttribute("title", "Unify Flow - " + currentFlowName);
 };
 
-openDrawer();
 fillDrawer();
