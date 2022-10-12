@@ -1,7 +1,7 @@
 const drawer = document.getElementById("drawer");
 const overlay = document.getElementById("overlay");
 
-const openDrawer = () => {
+export const openDrawer = () => {
   drawer.style.transform = "translateX(0)";
   overlay.style.display = "unset";
 };
