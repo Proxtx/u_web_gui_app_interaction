@@ -27,7 +27,7 @@ export const runFlow = async (pwd, flow, id) => {
   runningFlows[id] = flowStatus;
   for (let action of flow.actions) {
     flowStatus.actions.push(
-      await execute(pwd, action.appIndex, action.method, action.arguments)
+      await execute(pwd, action.appName, action.method, action.arguments)
     );
   }
 

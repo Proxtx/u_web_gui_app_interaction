@@ -97,7 +97,7 @@ window.addAction = async () => {
   renderActive();
 
   let localIndex = activeIndex;
-  actionElem.addEventListener("click", () => {
+  elem.addEventListener("click", () => {
     activeIndex = localIndex;
     renderActive();
   });

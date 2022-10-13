@@ -5,10 +5,10 @@ export const flow = await framework.load("flow.js");
 window.api = api;
 window.meta = meta;
 
-window.getDefinition = async (appIndex) => {
+window.getDefinition = async (appName) => {
   if (!window.definitions) window.definitions = [];
-  if (!window.definitions?.[appIndex]) {
-    window.definitions[appIndex] = api.getDefinitions(cookie.pwd, appIndex);
+  if (!window.definitions?.[appName]) {
+    window.definitions[appName] = api.getDefinitions(cookie.pwd, appName);
   }
-  return await window.definitions[appIndex];
+  return await window.definitions[appName];
 };

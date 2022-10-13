@@ -15,8 +15,8 @@ export class Component {
 
   attributeChangedCallback(attribute, oldValue, newValue) {
     switch (attribute) {
-      case "appindex":
-        this.appIndex = newValue;
+      case "appname":
+        this.appName = newValue;
         this.generateArguments();
         break;
       case "method":
@@ -27,9 +27,9 @@ export class Component {
   }
 
   async generateArguments() {
-    if (!this.appIndex || !this.method) return;
+    if (!this.appName || !this.method) return;
 
-    let definitions = await window.getDefinition(this.appIndex);
+    let definitions = await window.getDefinition(this.appName);
 
     let method = definitions.methods[this.method];
     this.name.innerText = method.name;
@@ -58,7 +58,7 @@ export class Component {
     this.executeButton.innerText = "...";
     let response = await this.api.execute(
       cookie.pwd,
-      this.appIndex,
+      this.appName,
       this.method,
       args
     );

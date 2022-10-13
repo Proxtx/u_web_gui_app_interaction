@@ -53,7 +53,7 @@ export class Component {
 
   async loadApps() {
     let apps = await window.api.getApps(cookie.pwd);
-    let appNames = apps.map((app) => app.name);
+    let appNames = Object.keys(apps);
     this.applyOptionArray(this.appSelect, appNames);
   }
 
@@ -61,9 +61,8 @@ export class Component {
     if (this.loadingMethods) return;
     this.loadingMethods = true;
 
-    let appDefinition = await window.getDefinition(
-      this.appSelect.selectedIndex
-    );
+    let appDefinition = await window.getDefinition(this.appSelect.value);
+
     let methodNames = Object.values(appDefinition.methods).map((v) => v.name);
     this.applyOptionArray(this.methodSelect, methodNames);
 
@@ -76,9 +75,7 @@ export class Component {
 
     this.arguments.innerHTML = "";
 
-    let appDefinition = await window.getDefinition(
-      this.appSelect.selectedIndex
-    );
+    let appDefinition = await window.getDefinition(this.appSelect.value);
 
     let methodDefinition;
     for (let method in appDefinition.methods) {
@@ -120,10 +117,10 @@ export class Component {
 
   importAction = async (actionDefinition) => {
     await this.loadApps();
-    this.appSelect.selectedIndex = actionDefinition.appIndex;
+    this.appSelect.value = actionDefinition.appName;
     await this.loadMethods();
     this.methodSelect.value = (
-      await window.getDefinition(this.appSelect.selectedIndex)
+      await window.getDefinition(this.appSelect.value)
     ).methods[actionDefinition.method].name;
     await this.loadArguments();
     this.setArgumentValues(actionDefinition.arguments);
@@ -131,9 +128,7 @@ export class Component {
 
   exportAction = async () => {
     let method;
-    let appDefinition = await window.getDefinition(
-      this.appSelect.selectedIndex
-    );
+    let appDefinition = await window.getDefinition(this.appSelect.value);
     for (let methodName in appDefinition.methods) {
       if (appDefinition.methods[methodName].name == this.methodSelect.value) {
         method = methodName;
@@ -142,7 +137,7 @@ export class Component {
     }
 
     return {
-      appIndex: this.appSelect.selectedIndex,
+      appName: this.appSelect.value,
       method,
       arguments: this.getArgumentValues(),
     };
