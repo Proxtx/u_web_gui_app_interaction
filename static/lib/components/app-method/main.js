@@ -32,6 +32,7 @@ export class Component {
     let definitions = await window.getDefinition(this.appName);
 
     let method = definitions.methods[this.method];
+    this.methodDefinition = method;
     this.name.innerText = method.name;
 
     if (method.autoRun) {
@@ -64,13 +65,25 @@ export class Component {
     );
     this.executeButton.innerText = "Execute";
     if (response == undefined) return;
-    try {
-      this.response.innerText = JSON.stringify(response, null, 2);
-    } catch {
-      this.response.innerText = response;
+    this.response.innerHTML = "";
+    if (!this.methodDefinition.returnType) {
+      let a = document.createElement("a");
+      try {
+        a.innerText = JSON.stringify(response, null, 2);
+      } catch {
+        a.innerText = response;
+      }
+
+      this.response.appendChild(a);
+    } else {
+      switch (this.methodDefinition.returnType) {
+        case "image":
+          let image = document.createElement("img");
+          image.src = "data:image/png;base64," + response;
+          image.style.width = "100%";
+          this.response.appendChild(image);
+          break;
+      }
     }
-    if (!hide) return;
-    await new Promise((r) => setTimeout(r, 5000));
-    this.response.innerText = "";
   }
 }
