@@ -19,6 +19,8 @@ export const saveFlows = async () => {
 };
 
 export const runFlow = async (pwd, flow, id) => {
+  if (!flow) return;
+
   let flowStatus = {
     start: Date.now(),
     flow,
