@@ -36,7 +36,7 @@ export class Component {
     this.name.innerText = method.name;
 
     if (method.autoRun) {
-      this.execute(false);
+      this.execute();
       this.executeButton.style.display = "none";
       return;
     }
@@ -50,11 +50,14 @@ export class Component {
     }
   }
 
-  async execute(hide = true) {
+  async execute() {
     let args = [];
     for (let argElem of this.argumentElements) {
       args.push(argElem.component.input.component.getValue());
     }
+
+    let vibObj = { vib: true };
+    this.vibrateLoop(vibObj);
 
     this.executeButton.innerText = "...";
     let response = await this.api.execute(
@@ -63,6 +66,8 @@ export class Component {
       this.method,
       args
     );
+
+    vibObj.vib = false;
     this.executeButton.innerText = "Execute";
     if (response == undefined) return;
     this.response.innerHTML = "";
@@ -84,6 +89,15 @@ export class Component {
           this.response.appendChild(image);
           break;
       }
+    }
+  }
+
+  async vibrateLoop(vibObj) {
+    let delay = 300;
+    while (navigator.vibrate && vibObj.vib) {
+      navigator.vibrate(100);
+      await new Promise((r) => setTimeout(r, delay));
+      delay -= delay > 20 ? 20 : 0;
     }
   }
 }
