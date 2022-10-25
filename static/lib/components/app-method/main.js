@@ -97,11 +97,12 @@ export class Component {
     let delay = localStorage[attributeIdentifier]
       ? Number(localStorage[attributeIdentifier])
       : 300;
+    console.log(delay);
     let subtract = delay / 15;
     let start = Date.now();
     while (navigator.vibrate && vibObj.vib) {
       navigator.vibrate(100);
-      await new Promise((r) => setTimeout(r, delay));
+      await new Promise((r) => setTimeout(r, subtract));
       delay -= delay > 20 ? subtract : 0;
     }
 
