@@ -93,11 +93,19 @@ export class Component {
   }
 
   async vibrateLoop(vibObj) {
-    let delay = 300;
+    let attributeIdentifier = "methodTime" + this.appName + this.method;
+    let delay = localStorage[attributeIdentifier]
+      ? Number(localStorage[attributeIdentifier])
+      : 300;
+    let subtract = delay / 15;
+    let start = Date.now();
     while (navigator.vibrate && vibObj.vib) {
       navigator.vibrate(100);
       await new Promise((r) => setTimeout(r, delay));
-      delay -= delay > 20 ? 20 : 0;
+      delay -= delay > 20 ? subtract : 0;
     }
+
+    let time = Date.now() - start;
+    localStorage[attributeIdentifier] = time;
   }
 }
