@@ -95,14 +95,13 @@ export class Component {
   async vibrateLoop(vibObj) {
     let attributeIdentifier = "methodTime" + this.appName + this.method;
     let delay = localStorage[attributeIdentifier]
-      ? Number(localStorage[attributeIdentifier]) / 7.5
+      ? (Number(localStorage[attributeIdentifier]) * 2) / 15
       : 300;
-    console.log(delay);
-    let subtract = localStorage[attributeIdentifier] / 15;
+    let subtract = delay / 15;
     let start = Date.now();
-    while (navigator.vibrate && vibObj.vib) {
-      navigator.vibrate(100);
-      await new Promise((r) => setTimeout(r, subtract));
+    while (vibObj.vib) {
+      navigator.vibrate && navigator.vibrate(100);
+      await new Promise((r) => setTimeout(r, delay));
       delay -= delay > 20 ? subtract : 0;
     }
 
