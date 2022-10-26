@@ -95,7 +95,7 @@ export class Component {
   async vibrateLoop(vibObj) {
     let attributeIdentifier = "methodTime" + this.appName + this.method;
     let delay = localStorage[attributeIdentifier]
-      ? Number(localStorage[attributeIdentifier])
+      ? Number(localStorage[attributeIdentifier]) / 7.5
       : 300;
     console.log(delay);
     let subtract = delay / 15;
