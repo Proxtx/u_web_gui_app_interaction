@@ -8,8 +8,12 @@ export class Component {
     this.name = this.document.getElementById("name");
     this.executeButton = this.document.getElementById("execute");
     this.response = this.document.getElementById("response");
+    this.linkButton = this.document.getElementById("link");
     this.executeButton.addEventListener("click", () => {
       this.execute();
+    });
+    this.linkButton.addEventListener("click", async () => {
+      this.displayResponse(await this.getLink(), true);
     });
   }
 
@@ -24,6 +28,16 @@ export class Component {
         this.generateArguments();
         break;
     }
+  }
+
+  async getLink() {
+    let url = new URL(location.origin + "/execute.route");
+    let args = await this.getArgumentValues();
+    url.searchParams.set("appName", this.appName);
+    url.searchParams.set("method", this.method);
+    url.searchParams.set("arguments", JSON.stringify(args));
+    url.searchParams.set("pwd", "NOT_NEEDED");
+    return url.toString();
   }
 
   async generateArguments() {
@@ -50,11 +64,17 @@ export class Component {
     }
   }
 
-  async execute() {
+  async getArgumentValues() {
     let args = [];
     for (let argElem of this.argumentElements) {
       args.push(argElem.component.input.component.getValue());
     }
+
+    return args;
+  }
+
+  async execute() {
+    let args = await this.getArgumentValues();
 
     let vibObj = { vib: true };
     this.vibrateLoop(vibObj);
@@ -69,9 +89,14 @@ export class Component {
 
     vibObj.vib = false;
     this.executeButton.innerText = "Execute";
+
+    await this.displayResponse(response);
+  }
+
+  async displayResponse(response, forceText = false) {
     if (response == undefined) return;
     this.response.innerHTML = "";
-    if (!this.methodDefinition.returnType) {
+    if (!this.methodDefinition.returnType || forceText) {
       let a = document.createElement("a");
       try {
         a.innerText = JSON.stringify(response, null, 2);
