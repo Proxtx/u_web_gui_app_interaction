@@ -52,6 +52,7 @@ export class Component {
     if (method.autoRun) {
       this.execute();
       this.executeButton.style.display = "none";
+      this.linkButton.style.display = "none";
       return;
     }
 
