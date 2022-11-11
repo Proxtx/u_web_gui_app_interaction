@@ -13,7 +13,9 @@ export class Component {
       this.execute();
     });
     this.linkButton.addEventListener("click", async () => {
-      this.displayResponse(await this.getLink(), true);
+      let link = await this.getLink();
+      this.displayResponse(link, true);
+      navigator.clipboard.writeText(link);
     });
   }
 
