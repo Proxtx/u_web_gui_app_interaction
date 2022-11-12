@@ -6,3 +6,7 @@ flowAction.component.init();
 export const getAction = async () => {
   return await flowAction.component.exportAction();
 };
+
+export const size = async () => {
+  flowAction.getBoundingClientRect();
+};
