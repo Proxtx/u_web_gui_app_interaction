@@ -2,6 +2,7 @@ import * as _ from "../lib/guiLoader.js";
 
 const flowAction = document.getElementById("flowAction");
 flowAction.component.init();
+flowAction.component.box.style.margin = "none";
 
 export const getAction = async () => {
   return await flowAction.component.exportAction();
