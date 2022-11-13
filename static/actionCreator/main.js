@@ -9,13 +9,21 @@ export const getAction = async () => {
 };
 
 export const size = async () => {
-  flowAction.getBoundingClientRect();
+  return flowAction.getBoundingClientRect();
 };
 
 export const importAction = async (action) => {
   await flowAction.component.importAction(action);
 };
 
+let resolve;
+
 export const resizeObserver = async () => {
-  await new Promise((r) => new ResizeObserver(r).observe(flowAction));
+  await new Promise((r) => {
+    resolve = r;
+  });
 };
+
+new ResizeObserver(() => {
+  resolve && resolve();
+}).observe(flowAction.component.box);

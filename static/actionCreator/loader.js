@@ -1,1 +1,1 @@
-framework.iframe.addModule("/actionCreator/main.js");
+framework.iframe.addModule("/actionCreator/main.js", "interaction");
