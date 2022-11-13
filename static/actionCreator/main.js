@@ -3,6 +3,10 @@ import * as _ from "../lib/guiLoader.js";
 const flowAction = document.getElementById("flowAction");
 flowAction.component.init();
 flowAction.component.box.style.margin = "0";
+flowAction.component.box.style.borderRadius = "var(--borderRadius)";
+flowAction.component.box.style.border = getComputedStyle(
+  flowAction.component.box
+).borderRight;
 
 export const getAction = async () => {
   return await flowAction.component.exportAction();
