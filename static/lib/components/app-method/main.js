@@ -9,6 +9,7 @@ export class Component {
     this.executeButton = this.document.getElementById("execute");
     this.response = this.document.getElementById("response");
     this.linkButton = this.document.getElementById("link");
+    this.box = this.document.getElementById("wrap");
     this.executeButton.addEventListener("click", () => {
       this.execute();
     });
