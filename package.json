@@ -2,7 +2,7 @@
   "dependencies": {
     "@proxtx/config": "^1.0.2",
     "@proxtx/framework": "^1.5.6",
-    "@proxtx/material": "^1.1.6"
+    "@proxtx/material": "^1.1.8"
   },
   "name": "u_web_gui_app_interaction",
   "description": "interacts with the u api to provide a simple web gui for app exports",
