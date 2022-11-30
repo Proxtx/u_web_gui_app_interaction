@@ -4,6 +4,10 @@ export class Component {
     this.document.getElementById("hamburger").addEventListener("click", () => {
       window.openDrawer();
     });
+
+    this.document.getElementById("appIcon").addEventListener("click", () => {
+      window.location.href = window.location.href
+    });
   }
 
   attributeChangedCallback(attribute, oldValue, newValue) {
