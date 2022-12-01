@@ -5,7 +5,9 @@ export class Component {
       window.openDrawer();
     });
 
-    this.document.getElementById("appIcon").addEventListener("click", () => {
+    this.document.getElementById("appIcon").addEventListener("click", async () => {
+      this.document.getElementById("appIcon").style.transform = "rotate(360deg)";
+      await new Promise (r=>setTimeout(r, 600));
       window.location.href = window.location.href
     });
   }
