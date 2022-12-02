@@ -5,17 +5,23 @@ export class Component {
       window.openDrawer();
     });
 
-    this.document.getElementById("appIcon").addEventListener("click", async () => {
-      this.document.getElementById("appIcon").style.transform = "rotate(360deg)";
-      await new Promise (r=>setTimeout(r, 600));
-      window.location.href = window.location.href
-    });
+    this.document
+      .getElementById("appIcon")
+      .addEventListener("click", async () => {
+        this.document.getElementById("appIcon").style.transform =
+          "rotate(360deg)";
+        await new Promise((r) => setTimeout(r, 600));
+        window.location.href = window.location.href;
+      });
   }
 
   attributeChangedCallback(attribute, oldValue, newValue) {
     switch (attribute) {
       case "title":
         this.document.getElementById("title").innerText = newValue;
+        break;
+      case "hamburger":
+        this.document.getElementById("hamburger").style.display = newValue;
         break;
     }
   }

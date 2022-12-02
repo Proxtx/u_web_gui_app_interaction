@@ -44,6 +44,17 @@ const fillDrawer = async () => {
     await new Promise((r) => setTimeout(r, 100));
     location.pathname = "../flow";
   });
+
+  let logsButton = document.createElement("m-button");
+  logsButton.className = "drawerOption";
+  logsButton.setAttribute("stretch", true);
+  logsButton.innerText = "logs";
+  logsButton.setAttribute("type", "text");
+  drawer.appendChild(logsButton);
+  logsButton.addEventListener("click", async () => {
+    await new Promise((r) => setTimeout(r, 100));
+    location.pathname = "../logs";
+  });
 };
 
 await uiBuilder.ready(appBar);
