@@ -17,6 +17,12 @@
       "template": "/input_methods/text/index.html",
       "component": "/input_methods/text/main.js",
       "styles": ["/main.css", "/input_methods/text/style.css"]
+    },
+    "value": {
+      "name": "i-value",
+      "template": "/input_methods/value/index.html",
+      "component": "/input_methods/value/main.js",
+      "styles": ["/main.css", "/input_methods/value/style.css"]
     }
   }
 }

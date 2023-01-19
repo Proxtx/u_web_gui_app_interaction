@@ -9,7 +9,7 @@ window.api = api;
 window.meta = meta;
 
 window.getDefinition = async (appName) => {
-  if (!window.definitions) window.definitions = [];
+  if (!window.definitions) window.definitions = {};
   if (!window.definitions?.[appName]) {
     window.definitions[appName] = api.getDefinitions(cookie.pwd, appName);
   }

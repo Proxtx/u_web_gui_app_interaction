@@ -118,10 +118,21 @@ export class Component {
   importAction = async (actionDefinition) => {
     await this.loadApps();
     this.appSelect.value = actionDefinition.appName;
+    let methods = (await window.getDefinition(this.appSelect.value)).methods;
+    if (!methods[actionDefinition.method]) {
+      methods[actionDefinition.method] = {
+        arguments: actionDefinition.arguments.map((value) => {
+          return {
+            name: "Stored Value - " + value,
+            type: "value",
+          };
+        }),
+        name: actionDefinition.method,
+      };
+    }
+
     await this.loadMethods();
-    this.methodSelect.value = (
-      await window.getDefinition(this.appSelect.value)
-    ).methods[actionDefinition.method].name;
+    this.methodSelect.value = methods[actionDefinition.method].name;
     await this.loadArguments();
     this.setArgumentValues(actionDefinition.arguments);
   };
