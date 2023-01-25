@@ -7,6 +7,7 @@ const drawer = document.getElementById("drawer");
 
 const loadApp = async (appName) => {
   wrap.innerHTML = "";
+  appBar.setAttribute("title", "Unify - Loading");
   let definition = await window.getDefinition(appName);
   for (let method in definition.methods) {
     let methodElem = document.createElement("u-app-method");
