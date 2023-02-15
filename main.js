@@ -3,7 +3,7 @@ import config from "@proxtx/config";
 import { setConfig } from "@proxtx/framework/static.js";
 
 setConfig({
-  ignoreParseHtml: ["/lib/components", "/lib/input_methods", "/offline.html"],
+  ignoreParseHtml: ["/lib/components", "/lib/input_methods", "/offline"],
   customScriptFileExtensions: [".html", ".route"],
 });
 await listen(config.port);
