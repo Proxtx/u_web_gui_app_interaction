@@ -46,6 +46,8 @@ h4 {
   transform: translateX(-100%);
   transition: 0.3s;
   max-width: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #overlay {
