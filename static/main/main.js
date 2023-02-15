@@ -1,11 +1,9 @@
 import { api } from "../lib/apiLoader.js";
 import { closeDrawer } from "../lib/drawer.js";
 
-window.addEventListener("load", () => {
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service-worker.js");
-  }
-});
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js");
+}
 
 const appBar = document.getElementById("appBar");
 const wrap = document.getElementById("wrap");
