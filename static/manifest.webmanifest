@@ -1,0 +1,31 @@
+{
+  "short_name": "Unify",
+  "name": "Unify Web Gui for App Interactions",
+  "icons": [
+    { "src": "/lib/img/icon.png", "type": "image/png", "size": "333x333" },
+    { "src": "/lib/img/favicon.ico", "type": "image/ico", "size": "256x256" }
+  ],
+  "id": "/",
+  "start_url": "/",
+  "background_color": "#6096ba",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#6096ba",
+  "shortcuts": [
+    {
+      "name": "Flow Editor",
+      "short_name": "Editor",
+      "description": "Edit Unify Web Gui Flows",
+      "url": "/flow",
+      "icons": [
+        { "src": "/lib/img/icon.png", "type": "image/png", "size": "333x333" },
+        {
+          "src": "/lib/img/favicon.ico",
+          "type": "image/ico",
+          "size": "256x256"
+        }
+      ]
+    }
+  ],
+  "description": "Interact with Unify through a Web GUI"
+}
