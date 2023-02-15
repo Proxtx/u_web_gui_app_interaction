@@ -19,11 +19,11 @@
       "description": "Edit Unify Web Gui Flows",
       "url": "/flow",
       "icons": [
-        { "src": "/lib/img/icon.png", "type": "image/png", "size": "333x333" },
+        { "src": "/lib/img/icon.png", "type": "image/png", "sizes": "333x333" },
         {
           "src": "/lib/img/favicon.ico",
           "type": "image/ico",
-          "size": "256x256"
+          "sizes": "256x256"
         }
       ]
     }
