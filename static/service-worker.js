@@ -1,6 +1,5 @@
 const OFFLINE_VERSION = 1;
 const CACHE_NAME = "offline";
-
 const OFFLINE_URL = "offline.html";
 
 self.addEventListener("install", (event) => {
@@ -10,7 +9,6 @@ self.addEventListener("install", (event) => {
       await cache.add(new Request(OFFLINE_URL, { cache: "reload" }));
     })()
   );
-
   self.skipWaiting();
 });
 
@@ -22,10 +20,12 @@ self.addEventListener("activate", (event) => {
       }
     })()
   );
+
+  self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.mode == "navigate") {
+  if (event.request.mode === "navigate") {
     event.respondWith(
       (async () => {
         try {
@@ -35,12 +35,11 @@ self.addEventListener("fetch", (event) => {
           }
 
           const networkResponse = await fetch(event.request);
-
           return networkResponse;
         } catch (error) {
           console.log("Fetch failed; returning offline page instead.", error);
 
-          const cache = await cache.open(CACHE_NAME);
+          const cache = await caches.open(CACHE_NAME);
           const cachedResponse = await cache.match(OFFLINE_URL);
           return cachedResponse;
         }
