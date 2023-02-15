@@ -23,6 +23,7 @@ b {
 body {
   margin: 0;
   background-color: var(--backgroundColor);
+  overscroll-behavior: contain;
 }
 
 h1,
