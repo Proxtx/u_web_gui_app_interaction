@@ -3,6 +3,7 @@ const typeToComponent = {
   number: "i-number",
   text: "i-text",
   value: "i-value",
+  select: "i-select",
 };
 
 export class Component {
