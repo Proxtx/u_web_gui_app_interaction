@@ -9,6 +9,12 @@ const typeToComponent = {
 export class Component {
   constructor(options) {
     this.document = options.shadowDom;
+
+    this.edit = this.document.getElementById("edit");
+
+    this.edit.addEventListener("click", () => {
+      this.edit.style.width = "100%";
+    });
   }
 
   async inputDefinition(definition) {
