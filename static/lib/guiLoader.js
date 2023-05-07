@@ -12,10 +12,6 @@ await loadPack("/lib/components/pack.json", {
   urlPrefix: "/lib/",
 });
 
-await loadPack("/lib/input_methods/pack.json", {
-  urlPrefix: "/lib/",
-});
-
 document.body.style.opacity = 1;
 
 for (let i of guiLoaded) {

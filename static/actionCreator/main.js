@@ -1,23 +1,23 @@
 import * as _ from "../lib/guiLoader.js";
 
-const flowAction = document.getElementById("flowAction");
-flowAction.component.init();
-flowAction.component.box.style.margin = "0";
-flowAction.component.box.style.borderRadius = "var(--borderRadius)";
-flowAction.component.box.style.border = getComputedStyle(
-  flowAction.component.box
+const action = document.getElementById("action");
+action.component.init();
+action.component.box.style.margin = "0";
+action.component.box.style.borderRadius = "var(--borderRadius)";
+action.component.box.style.border = getComputedStyle(
+  action.component.box
 ).borderRight;
 
 export const getAction = async () => {
-  return await flowAction.component.exportAction();
+  return await action.component.exportAction();
 };
 
 export const size = async () => {
-  return flowAction.getBoundingClientRect();
+  return action.getBoundingClientRect();
 };
 
-export const importAction = async (action) => {
-  await flowAction.component.importAction(action);
+export const importAction = async (actionConfig) => {
+  await action.component.importAction(actionConfig);
 };
 
 let resolve;
@@ -30,4 +30,4 @@ export const resizeObserver = async () => {
 
 new ResizeObserver(() => {
   resolve && resolve();
-}).observe(flowAction.component.box);
+}).observe(action.component.box);

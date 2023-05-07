@@ -24,11 +24,17 @@
       "component": "/components/argument/main.js",
       "styles": ["/main.css", "/components/argument/style.css"]
     },
-    "flow-action": {
-      "name": "u-flow-action",
-      "template": "/components/flow-action/index.html",
-      "component": "/components/flow-action/main.js",
-      "styles": ["/main.css", "/components/flow-action/style.css"]
+    "action": {
+      "name": "u-action",
+      "template": "/components/action/index.html",
+      "component": "/components/action/main.js",
+      "styles": ["/main.css", "/components/action/style.css"]
+    },
+    "input-config": {
+      "name": "u-input-config",
+      "template": "/components/input-config/index.html",
+      "component": "/components/input-config/main.js",
+      "styles": ["/main.css", "/components/input-config/style.css"]
     }
   }
 }

@@ -57,7 +57,7 @@ const renderActive = () => {
 };
 
 const generateActionElem = async (actionConfig) => {
-  const actionElem = document.createElement("u-flow-action");
+  const actionElem = document.createElement("u-action");
   await uiBuilder.ready(actionElem);
   await actionElem.component.importAction(actionConfig);
   actionElem.addEventListener("click", () => {
@@ -80,7 +80,7 @@ const generateFlow = async () => {
 };
 
 window.addAction = async () => {
-  let elem = document.createElement("u-flow-action");
+  let elem = document.createElement("u-action");
   await uiBuilder.ready(elem);
   await elem.component.init();
   if (activeIndex == actionWrap.children.length - 1)
@@ -101,16 +101,6 @@ window.addAction = async () => {
     activeIndex = localIndex;
     renderActive();
   });
-};
-
-window.upAction = () => {
-  if (activeIndex > 0) activeIndex--;
-  renderActive();
-};
-
-window.downAction = () => {
-  if (activeIndex < actionWrap.children.length - 1) activeIndex++;
-  renderActive();
 };
 
 window.removeAction = () => {

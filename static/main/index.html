@@ -10,12 +10,14 @@
     <link rel="manifest" href="/manifest.webmanifest" />
   </head>
   <body>
-    <u-app-bar title="Unify" id="appBar"></u-app-bar>
-    <div id="wrap"></div>
-    <div id="overlay"></div>
-    <div id="drawer"></div>
-    <script src="../lib/drawer.js" type="module"></script>
-    <script src="../lib/guiLoader.js" type="module"></script>
-    <script src="main.js" type="module"></script>
+    <m-overwrite-container>
+      <u-app-bar title="Unify" id="appBar"></u-app-bar>
+      <div id="wrap"></div>
+      <div id="overlay"></div>
+      <div id="drawer"></div>
+      <script src="../lib/drawer.js" type="module"></script>
+      <script src="../lib/guiLoader.js" type="module"></script>
+      <script src="main.js" type="module"></script>
+    </m-overwrite-container>
   </body>
 </html>

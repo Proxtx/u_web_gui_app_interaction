@@ -1,12 +1,14 @@
 export const api = await framework.load("api.js");
 export const meta = await framework.load("meta.js");
 export const flow = await framework.load("flow.js");
+export const input = await framework.load("input.js");
 
 cookie.default =
   "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/; SameSite=None; Secure";
 
 window.api = api;
 window.meta = meta;
+window.input = input;
 
 window.getDefinition = async (appName) => {
   if (!window.definitions) window.definitions = {};

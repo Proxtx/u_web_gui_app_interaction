@@ -71,7 +71,7 @@ export class Component {
   async getArgumentValues() {
     let args = [];
     for (let argElem of this.argumentElements) {
-      args.push(argElem.component.input.component.getValue());
+      args.push(await argElem.component.getValue());
     }
 
     return args;

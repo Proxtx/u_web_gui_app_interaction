@@ -97,19 +97,19 @@ export class Component {
     this.loadingArguments = false;
   }
 
-  setArgumentValues = (values) => {
+  setArgumentValues = async (values) => {
     for (let valueIndex in values) {
-      this.arguments.children[valueIndex].component.input.component.setValue(
+      this.arguments.children[valueIndex].component.setValue(
         values[valueIndex]
       );
     }
   };
 
-  getArgumentValues = () => {
+  getArgumentValues = async () => {
     let values = [];
 
     for (let elem of this.arguments.children) {
-      values.push(elem.component.input.component.getValue());
+      values.push(await elem.component.getValue());
     }
 
     return values;
@@ -134,7 +134,7 @@ export class Component {
     await this.loadMethods();
     this.methodSelect.value = methods[actionDefinition.method].name;
     await this.loadArguments();
-    this.setArgumentValues(actionDefinition.arguments);
+    await this.setArgumentValues(actionDefinition.arguments);
   };
 
   exportAction = async () => {
@@ -150,7 +150,7 @@ export class Component {
     return {
       appName: this.appSelect.value,
       method,
-      arguments: this.getArgumentValues(),
+      arguments: await this.getArgumentValues(),
     };
   };
 

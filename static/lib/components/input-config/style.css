@@ -1,0 +1,8 @@
+#argumentsWrap {
+  display: flex;
+  gap: var(--contentSpacing);
+  align-items: center;
+  flex-direction: column;
+  padding: var(--contentSpacing);
+  background-color: var(--accentColor);
+}

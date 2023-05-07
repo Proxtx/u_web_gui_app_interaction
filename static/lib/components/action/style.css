@@ -38,14 +38,6 @@
   display: none;
 }
 
-.select {
-  width: 150px;
-  border-radius: var(--borderRadius);
-  background-color: transparent;
-  border: 2px solid var(--accentColor);
-  padding: var(--contentSpacing);
-}
-
 #arguments {
   display: flex;
   flex-direction: column;

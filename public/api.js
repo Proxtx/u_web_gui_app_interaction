@@ -2,14 +2,19 @@ import { genCombine } from "@proxtx/combine-rest/request.js";
 import { genModule } from "@proxtx/combine/combine.js";
 import config from "@proxtx/config";
 import { auth } from "./meta.js";
+import { resolveArgument } from "./input.js";
 
 const api = await genCombine(config.api, "public/api.js", genModule);
 const logs = [];
 
-export const execute = async function () {
-  logs.push({ appName: arguments[1], method: arguments[2], time: Date.now() });
+export const execute = async function (pwd, appName, method, args) {
+  args = [...args];
+  logs.push({ appName, method, time: Date.now() });
   if (logs.length > 20) logs.shift();
-  return await api.execute(...arguments);
+  for (let argIndex in args) {
+    args[argIndex] = await resolveArgument(pwd, args[argIndex]);
+  }
+  return await api.execute(pwd, appName, method, args);
 };
 
 export const getApps = async function () {

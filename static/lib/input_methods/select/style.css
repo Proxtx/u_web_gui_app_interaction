@@ -1,9 +1,0 @@
-#select {
-  width: 100%;
-  padding: calc(var(--contentSpacing) * 2);
-  margin-top: var(--contentSpacing);
-  border-radius: var(--borderRadius);
-  border: 1px solid var(--accentColor);
-  accent-color: var(--accentColor);
-  font-size: 100%;
-}
