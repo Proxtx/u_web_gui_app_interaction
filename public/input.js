@@ -28,13 +28,7 @@ export const evaluateInput = async function () {
   return await api.evaluateInput(...arguments);
 };
 
-export const resolveArgument = async function (pwd, arg) {
-  if (arg?.inputOverwrite) {
-    if (arg.value?.evaluate) {
-      return await evaluateInput(pwd, arg.type, arg.value);
-    } else {
-      return arg.value;
-    }
-  }
-  return arg;
+export const resolveArgument = async function () {
+  if (!api) await genApi();
+  return await api.resolveInput(...arguments);
 };
