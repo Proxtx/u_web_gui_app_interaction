@@ -1,7 +1,7 @@
 import * as _ from "../lib/guiLoader.js";
 
 const action = document.getElementById("action");
-action.component.init();
+await action.component.init();
 action.component.box.style.margin = "0";
 action.component.box.style.borderRadius = "var(--borderRadius)";
 action.component.box.style.border = getComputedStyle(
