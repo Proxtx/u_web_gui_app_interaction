@@ -1,50 +1,33 @@
-import {
-  runFlow as runFlowImport,
-  getFlows,
-  runningFlows,
-  saveFlows,
-} from "../private/flow.js";
-import { auth } from "./meta.js";
+import { genModule } from "@proxtx/combine/combine.js";
+import { genCombine } from "@proxtx/combine-rest/request.js";
+import config from "@proxtx/config";
 
-export const runFlow = async (pwd, name) => {
-  if (!(await auth(pwd))) return;
-  let id = Math.floor(Math.random() * 10000);
-  runFlowImport(pwd, getFlows()[name], id);
-  return id;
+const api = await genCombine(config.flows, "public/api.js", genModule);
+
+export const runFlow = async function () {
+  return await api.runFlow(...arguments);
 };
 
-export const runFlowSync = async (pwd, name) => {
-  if (!(await auth(pwd))) return;
-  let id = Math.floor(Math.random() * 10000);
-  await runFlowImport(pwd, getFlows()[name], id);
-  return id;
+export const runFlowSync = async function () {
+  return await api.runFlowSync(...arguments);
 };
 
-export const setFlow = async (pwd, name, flow) => {
-  if (!(await auth(pwd))) return;
-  let flows = getFlows();
-  flows[name] = flow;
-  await saveFlows();
+export const setFlow = async function () {
+  return await api.setFlow(...arguments);
 };
 
-export const getFlow = async (pwd, name) => {
-  if (!(await auth(pwd))) return;
-  return getFlows()[name];
+export const getFlow = async function () {
+  return await api.getFlow(...arguments);
 };
 
-export const deleteFlow = async (pwd, name) => {
-  if (!(await auth(pwd))) return;
-  let flows = getFlows();
-  delete flows[name];
-  await saveFlows();
+export const deleteFlow = async function () {
+  return await api.deleteFlow(...arguments);
 };
 
-export const listFlows = async (pwd) => {
-  if (!(await auth(pwd))) return;
-  return Object.keys(getFlows());
+export const listFlows = async function () {
+  return await api.listFlows(...arguments);
 };
 
-export const flowStatus = async (pwd, id) => {
-  if (!(await auth(pwd))) return;
-  return runningFlows[id];
+export const flowStatus = async function () {
+  return await api.flowStatus(...arguments);
 };
