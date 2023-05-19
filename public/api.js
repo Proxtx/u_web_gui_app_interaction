@@ -2,7 +2,6 @@ import { genCombine } from "@proxtx/combine-rest/request.js";
 import { genModule } from "@proxtx/combine/combine.js";
 import config from "@proxtx/config";
 import { auth } from "./meta.js";
-import { resolveArgument } from "./input.js";
 
 const api = await genCombine(config.api, "public/api.js", genModule);
 const logs = [];
