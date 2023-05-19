@@ -11,9 +11,6 @@ export const execute = async function (pwd, appName, method, args) {
   args = [...args];
   logs.push({ appName, method, time: Date.now() });
   if (logs.length > 20) logs.shift();
-  for (let argIndex in args) {
-    args[argIndex] = await resolveArgument(pwd, args[argIndex]);
-  }
   return await api.execute(pwd, appName, method, args);
 };
 
