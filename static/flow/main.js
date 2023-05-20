@@ -7,6 +7,7 @@ let activeIndex = 0;
 const actionWrap = document.getElementById("actionWrap");
 const appBar = document.getElementById("appBar");
 const runButton = document.getElementById("runButton");
+const argumentEditor = document.getElementById("argumentEditor");
 let currentFlow;
 let currentFlowName;
 
@@ -76,7 +77,7 @@ const generateFlow = async () => {
   for (let action = 0; action < actionWrap.children.length; action++) {
     actions.push(await actionWrap.children[action].component.exportAction());
   }
-  return { actions };
+  return { actions, arguments: await argumentEditor.component.getConfigs() };
 };
 
 window.addAction = async () => {
@@ -117,7 +118,11 @@ window.runAction = async () => {
 
   let flowConfig = await generateFlow();
   await flow.setFlow(cookie.pwd, currentFlowName, flowConfig);
-  let id = await flow.runFlow(cookie.pwd, currentFlowName);
+  let id = await flow.runFlow(
+    cookie.pwd,
+    currentFlowName,
+    await argumentEditor.component.getValues()
+  );
   while (true) {
     let status = await flow.flowStatus(cookie.pwd, id);
     if (!status) break;
@@ -187,6 +192,7 @@ const loadFlow = async (flowName) => {
   currentFlowName = flowName;
   currentFlow = await flow.getFlow(cookie.pwd, flowName);
   renderActions(currentFlow.actions);
+  await argumentEditor.component.loadArguments(currentFlow.arguments);
   appBar.setAttribute("title", "Unify Flow - " + currentFlowName);
 };
 

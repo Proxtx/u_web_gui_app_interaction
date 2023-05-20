@@ -55,3 +55,9 @@
 #add {
   height: 70%;
 }
+
+#argumentEditor {
+  margin: calc(var(--contentSpacing) * 2);
+  box-sizing: border-box;
+  display: block;
+}

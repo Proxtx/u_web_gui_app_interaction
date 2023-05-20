@@ -35,6 +35,12 @@
       "template": "/components/input-config/index.html",
       "component": "/components/input-config/main.js",
       "styles": ["/main.css", "/components/input-config/style.css"]
+    },
+    "argument-editor": {
+      "name": "u-argument-editor",
+      "template": "/components/argument-editor/index.html",
+      "component": "/components/argument-editor/main.js",
+      "styles": ["/main.css", "/components/argument-editor/style.css"]
     }
   }
 }
