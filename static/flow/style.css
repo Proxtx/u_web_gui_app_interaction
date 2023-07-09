@@ -17,7 +17,7 @@
 }
 
 #floatingActionBar {
-  border-radius: calc(var(--borderRadius) * 5);
+  border-radius: calc(var(--borderRadius) * 1);
   border: 2px solid var(--accentColor);
   padding: var(--contentSpacing);
   display: flex;
@@ -27,6 +27,7 @@
   margin: calc(var(--contentSpacing) * 2);
   justify-content: space-between;
   position: relative;
+  box-shadow: 0px 0px 24px 0px #00000040;
 }
 
 .floatingActionBarActionsWrap {
