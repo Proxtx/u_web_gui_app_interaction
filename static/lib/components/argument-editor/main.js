@@ -17,6 +17,7 @@ export class Component {
   }
 
   async loadArguments(args) {
+    this.arguments.innerHTML = "";
     if (args)
       for (let arg of args) {
         await this.addArgument(arg);
