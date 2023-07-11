@@ -136,7 +136,7 @@ window.runAction = async () => {
 
 window.deleteAction = async () => {
   await flow.deleteFlow(cookie.pwd, currentFlowName);
-  location.href = location.href;
+  location.reload();
 };
 
 window.saveAction = async () => {
