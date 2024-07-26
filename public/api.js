@@ -7,9 +7,9 @@ import { runFlow } from "./flow.js";
 const api = await genCombine(config.api, "public/api.js", genModule);
 const logs = [];
 
-export const execute = async function (pwd, appName, method, args) {
+export const execute = async function (pwd, appName, method, args, log=true) {
   args = [...args];
-  logs.push({ appName, method, time: Date.now() });
+  if(log) logs.push({ appName, method, time: Date.now() });
   if (config.actionFlow) {
     await runFlow(pwd, config.actionFlow, [appName, method, args, Date.now()]);
   }
