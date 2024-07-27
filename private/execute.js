@@ -6,7 +6,8 @@ export const server = async (_document, options) => {
       options.req.cookies.pwd ? options.req.cookies.pwd : options.req.query.pwd,
       options.req.query.appName,
       options.req.query.method,
-      JSON.parse(options.req.query.arguments)
+      JSON.parse(options.req.query.arguments),
+      false
     )
   );
 };
